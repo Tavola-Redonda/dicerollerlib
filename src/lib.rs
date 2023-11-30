@@ -53,7 +53,7 @@ pub mod dicelib {
             let psum = roll_sum(&roll_res, r.modifier);
             let create_result: RollResult = RollResult {
                 dice_type: r.dice_type,
-                dice_qnt: r.dice_number,
+                dice_qnt: r.dice_qnt,
                 rolls: roll_res,
                 modifier: r.modifier,
                 sum: psum,
