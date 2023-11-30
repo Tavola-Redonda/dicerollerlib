@@ -32,7 +32,8 @@ The main function to use is `roll_request`. This function recives a `Vec<RollReq
 ### Example:
 
 ```rust
-use dicerollerlib::dicelib::{roll_request, RollRequest};
+use dicerollerlib::roll_request;
+use dicerollerlib::rolltypes::*;
 
 fn main() {
     let request_d20 = RollRequest {
@@ -48,15 +49,16 @@ fn main() {
 
     let dice_pool: Vec<RollRequest> = vec![request_d20, request_d12];
 
-    let results = roll_request(dice_pool); //returns a vector of RollResult
+    let results: Vec<RollResult> = roll_request(dice_pool); //returns a vector of RollResult
 
     for pool in results {
-        println!(
-            "{}d{} + {}:",
-            pool.dice_qnt, pool.dice_type, pool.modifier
-        );
-        for roll in pool.rolls {
-            println!("Roll {}: {} ({})", rool.roll_number, roll.roll, roll.dice_type);
+        println!("{}d{} + {}:", pool.dice_qnt, pool.dice_type, pool.modifier);
+        let dice_rolls: Vec<DiceRollResult> = pool.rolls;
+        for rolls in dice_rolls {
+            println!(
+                "Roll {}: {} ({})",
+                rolls.roll_number, rolls.roll, rolls.dice_type
+            );
         }
         println!("Sum w/ modifier: {}", pool.sum)
     }
