@@ -15,7 +15,7 @@ pub mod commandparser {
         }
 
         RollRequest {
-            dice_number: parsed[0].parse().unwrap(),
+            dice_qnt: parsed[0].parse().unwrap(),
             dice_type: parsed[1].parse().unwrap(),
             modifier: pool_modifier,
         }
