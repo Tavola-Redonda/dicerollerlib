@@ -1,3 +1,4 @@
+workspace = { members = ["outros_testes/documentation-test"] }
 [package]
 name = "dicerollerlib"
 version = "0.1.0"

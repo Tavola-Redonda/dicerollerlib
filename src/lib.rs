@@ -1,6 +1,3 @@
-mod dicetype;
-mod roller;
-
 pub mod dicelib {
     use rand::Rng;
 
