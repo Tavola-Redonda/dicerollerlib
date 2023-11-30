@@ -1,13 +1,10 @@
-mod dicetype;
-mod roller;
-
 pub mod dicelib {
     use rand::Rng;
 
     #[derive(Debug)]
     pub struct RollRequest {
         pub dice_type: i32,
-        pub dice_number: i32,
+        pub dice_qnt: i32,
         pub modifier: i32,
     }
 
@@ -21,15 +18,15 @@ pub mod dicelib {
     #[derive(Debug)]
     pub struct RollResult {
         pub dice_type: i32,
-        pub dice_number: i32,
+        pub dice_qnt: i32,
         pub modifier: i32,
-        pub roll_result: Vec<DiceRollResult>,
+        pub rolls: Vec<DiceRollResult>,
         pub sum: i32,
     }
 
     fn roll(req: &RollRequest) -> Vec<DiceRollResult> {
         let mut roll: Vec<DiceRollResult> = Vec::new();
-        for n in 0..req.dice_number {
+        for n in 0..req.dice_qnt {
             let num_roll = n + 1;
             let create_roll: DiceRollResult = DiceRollResult {
                 dice_type: req.dice_type,
@@ -56,8 +53,8 @@ pub mod dicelib {
             let psum = roll_sum(&roll_res, r.modifier);
             let create_result: RollResult = RollResult {
                 dice_type: r.dice_type,
-                dice_number: r.dice_number,
-                roll_result: roll_res,
+                dice_qnt: r.dice_number,
+                rolls: roll_res,
                 modifier: r.modifier,
                 sum: psum,
             };
