@@ -97,7 +97,7 @@ pub struct DiceRollResult {
 
 - `dice_type`: Dice type of the roll
 - `roll_number`: Number of the roll relative to the pool
-- `roll`: Random number between 1 and `dice_type`, also know as the result of a roll_number
+- `roll`: Random number between 1 and `dice_type`, also know as the result of a roll
 
 #### RollResult
 
