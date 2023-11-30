@@ -116,5 +116,5 @@ pub struct RollResult {
 - `dice_type`: Dice type of the pool
 - `dice_qnt`: Number of dices rolled
 - `modifier`: Modifier of the pool
-- `rolls`: A `Vec<DiceRollResult>` (see [DiceRollResult](###DiceRollResult)). Represents all the rolls in a particular dice pool
+- `rolls`: A `Vec<DiceRollResult>` (see [DiceRollResult](#dicerollresult)). Represents all the rolls in a particular dice pool
 - `sum`: The sum of all rolls +/- modifier
