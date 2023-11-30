@@ -77,7 +77,7 @@ struct RollRequest {
 };
 ```
 
-- `dice_qnt`: Number of dices in the pull. Can be any positive integer. Will determine the `len()` of `RollResult.roll_result` for this pool
+- `dice_qnt`: Number of dices in the pull. Can be any positive integer. Will determine the `len()` of `RollResult.rolls` for this pool
 - `dice_type`: Dice type. Can be any positive integer, dices will always be rolled considering 1 as the minimum result and `dice_type` as the maximum results
 - `modifer`: Can be any integer, will be added or subtracted from the sum of all rolls
 
@@ -116,5 +116,5 @@ pub struct RollResult {
 - `dice_type`: Dice type of the pool
 - `dice_qnt`: Number of dices rolled
 - `modifier`: Modifier of the pool
-- `rolls`: A `Vec<DiceRollResult>` (see [DiceRollResult](#DiceRollResult)). Represents all the rolls in a particular dice pool
+- `rolls`: A `Vec<DiceRollResult>` (see [DiceRollResult](###DiceRollResult)). Represents all the rolls in a particular dice pool
 - `sum`: The sum of all rolls +/- modifier
