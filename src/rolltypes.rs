@@ -15,7 +15,7 @@ pub struct ModifierOperator {
 pub struct RollRequest {
     pub dice_type: i32,
     pub dice_qnt: i32,
-    pub modifier: Vec<ModifierOperator>,
+    pub modifier: Option<Vec<ModifierOperator>>,
 }
 
 #[derive(Debug)]
@@ -30,7 +30,7 @@ pub struct RollResult {
     pub pool: String,
     pub dice_type: i32,
     pub dice_qnt: i32,
-    pub modifier: Vec<ModifierOperator>,
+    pub modifier: Option<Vec<ModifierOperator>>,
     pub rolls: Vec<DiceRollResult>,
     pub sum: f32,
 }
