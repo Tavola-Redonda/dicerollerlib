@@ -1,8 +1,21 @@
 #[derive(Debug)]
+pub enum Operators {
+    Div,
+    Mult,
+    Sum,
+    Sub,
+}
+#[derive(Debug)]
+pub struct ModifierOperator {
+    pub operator: Operators,
+    pub number: f32,
+}
+
+#[derive(Debug)]
 pub struct RollRequest {
     pub dice_type: i32,
     pub dice_qnt: i32,
-    pub modifier: i32,
+    pub modifier: Vec<ModifierOperator>,
 }
 
 #[derive(Debug)]
@@ -14,9 +27,10 @@ pub struct DiceRollResult {
 
 #[derive(Debug)]
 pub struct RollResult {
+    pub pool: String,
     pub dice_type: i32,
     pub dice_qnt: i32,
-    pub modifier: i32,
+    pub modifier: Vec<ModifierOperator>,
     pub rolls: Vec<DiceRollResult>,
-    pub sum: i32,
+    pub sum: f32,
 }
