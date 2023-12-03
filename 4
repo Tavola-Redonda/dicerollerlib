@@ -4,7 +4,7 @@ use core::f32;
 use rand::Rng;
 use std::ops::Add;
 
-fn roll_dices(req: &RollRequest) -> Vec<DiceRollResult> {
+fn roll(req: &RollRequest) -> Vec<DiceRollResult> {
     let mut roll: Vec<DiceRollResult> = Vec::new();
     for n in 0..req.dice_qnt {
         let num_roll = n + 1;
@@ -68,7 +68,7 @@ pub fn roll_request(req: Vec<RollRequest>) -> Vec<RollResult> {
     let mut roll_result: Vec<RollResult> = Vec::new();
 
     for r in req {
-        let roll_res: Vec<DiceRollResult> = roll_dices(&r);
+        let roll_res: Vec<DiceRollResult> = roll(&r);
         let pool_result = roll_sum(&roll_res, &r.modifier);
         let pool_str: String = generate_pool_string(&r);
         let create_result: RollResult = RollResult {
