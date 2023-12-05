@@ -140,6 +140,7 @@ pub enum Operators {
   Mult,
   Div,
 }
+```
 
 ### Return Types
 
