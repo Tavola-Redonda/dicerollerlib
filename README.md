@@ -133,7 +133,7 @@ ModifierOperator {
 
 - The enum de defines the types of operations possible
 
-````rust
+```rust
 pub enum Operators {
   Sum,
   Sub,
@@ -154,7 +154,7 @@ pub struct DiceRollResult {
   pub roll_number: i32,
   pub roll: i32,
 }
-````
+```
 
 - `dice_type`: Dice type of the roll
 - `roll_number`: Number of the roll relative to the pool
