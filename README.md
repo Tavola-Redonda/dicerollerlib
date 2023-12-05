@@ -166,16 +166,18 @@ The end result of a deice pool
 
 ```rust
 pub struct RollResult {
+  pub pool: String,
   pub dice_type: i32,
   pub dice_qnt: i32,
-  pub modifier: i32,
+  pub modifier: Option<Vec<ModifierOperator>>,
   pub rolls: Vec<DiceRollResult>,
-  pub sum: i32,
+  pub sum: f32,
 }
 ```
 
+- `pool`: A string that represents the rolled pull (EX: `"1d20+3"`)
 - `dice_type`: Dice type of the pool
 - `dice_qnt`: Number of dices rolled
-- `modifier`: Modifier of the pool
+- `modifier`: Modifiers of the pool
 - `rolls`: A `Vec<DiceRollResult>` (see [DiceRollResult](#dicerollresult)). Represents all the rolls in a particular dice pool
-- `sum`: The sum of all rolls +/- modifier
+- `sum`: The sum of all rolls modified by all operations in `modifier`
