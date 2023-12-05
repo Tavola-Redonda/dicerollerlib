@@ -11,7 +11,7 @@ fn roll_dices(req: &RollRequest) -> Vec<DiceRollResult> {
         let create_roll: DiceRollResult = DiceRollResult {
             dice_type: req.dice_type,
             roll_number: num_roll,
-            roll: rand::thread_rng().gen_range(1..req.dice_type),
+            roll: rand::thread_rng().gen_range(1..req.dice_type + 1),
         };
         roll.push(create_roll)
     }
