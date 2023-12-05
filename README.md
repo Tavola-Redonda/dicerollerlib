@@ -36,15 +36,34 @@ use dicerollerlib::roll_request;
 use dicerollerlib::rolltypes::*;
 
 fn main() {
+    let modifier_1 = ModifierOperator {
+        operator: Operators::Mult,
+        number: 2.0,
+    };
+    let modifier_2 = ModifierOperator {
+        operator: Operators::Sum,
+        number: 10.0,
+    };
+
+    let modifier_3 = ModifierOperator {
+        operator: Operators::Div,
+        number: 2.0,
+    };
+
+    let modifier_4 = ModifierOperator {
+        operator: Operators::Sub,
+        number: 10.0,
+    };
+
     let request_d20 = RollRequest {
         dice_qnt: 2,
         dice_type: 20,
-        modifier: 3,
+        modifier: Option::from(vec![modifier_1, modifier_2]),
     };
     let request_d12 = RollRequest {
         dice_qnt: 3,
         dice_type: 12,
-        modifier: -3,
+        modifier: Option::from(vec![modifier_3, modifier_4]),
     };
 
     let dice_pool: Vec<RollRequest> = vec![request_d20, request_d12];
@@ -52,7 +71,7 @@ fn main() {
     let results: Vec<RollResult> = roll_request(dice_pool); //returns a vector of RollResult
 
     for pool in results {
-        println!("{}d{} + {}:", pool.dice_qnt, pool.dice_type, pool.modifier);
+        println!("{}", pool.pool);
         let dice_rolls: Vec<DiceRollResult> = pool.rolls;
         for rolls in dice_rolls {
             println!(
@@ -69,19 +88,58 @@ fn main() {
 
 ### Input Types
 
+#### RollRequest
+
 The basic input type is `RollRequest` and represents the parameters to roll a pool of dices
 
 ```rust
 struct RollRequest {
   dice_qnt:i32, // Number of dices in this pull
   dice_type: i32, // type of dice to be rolled, can be any integer
-  modifer: i32 // modifier
+  modifer: Option<Vec<ModifierOperator>> // modifier
 };
 ```
 
 - `dice_qnt`: Number of dices in the pull. Can be any positive integer. Will determine the `len()` of `RollResult.rolls` for this pool
 - `dice_type`: Dice type. Can be any positive integer, dices will always be rolled considering 1 as the minimum result and `dice_type` as the maximum results
-- `modifer`: Can be any integer, will be added or subtracted from the sum of all rolls
+- `modifer`: A vector of `ModifierOperator`s or `None`. Represents de queue of operations to do with the results of a roll
+
+#### ModifierOperator
+
+Defines one operation to do with a given roll
+
+```rust
+pub struct ModifierOperator {
+  operation: Operators,
+  number: f32
+}
+```
+
+- `operation`: Defines de operation (sum, sub, mult, div) of the given modifer. Needs to be an item of the `Operators` enum
+- `number`: de number to do the operation with
+
+##### _Example_:
+
+```rust
+ModifierOperator {
+  operation: Operators::Sum,
+  number: 3
+}
+```
+
+- Passing this modifer to de roll request will tell the `roll_sum` function to add 3 to the rolls sum.
+
+### Operators
+
+- The enum de defines the types of operations possible
+
+````rust
+pub enum Operators {
+  Sum,
+  Sub,
+  Mult,
+  Div,
+}
 
 ### Return Types
 
@@ -95,7 +153,7 @@ pub struct DiceRollResult {
   pub roll_number: i32,
   pub roll: i32,
 }
-```
+````
 
 - `dice_type`: Dice type of the roll
 - `roll_number`: Number of the roll relative to the pool
